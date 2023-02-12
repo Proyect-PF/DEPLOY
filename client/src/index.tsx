@@ -10,7 +10,7 @@ import axios from 'axios';
 
 //axios.defaults.baseURL ='http://localhost:3700';
 
-axios.defaults.baseURL = 'https://unbardodesignback.up.railway.app';
+axios.defaults.baseURL = 'https://unbardodesignback.up.railway.app/';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
