@@ -18,7 +18,7 @@ import {
 export const fetch_products = (query: string | null = null) => {
   return (dispatch: Dispatch<ActionProducts>) => {
     let payload: ProductState["productList"] = [];
-    axios.get(`http://localhost:3700/products/?${query}`).then((res) => {
+    axios.get(`/products/?${query}`).then((res) => {
       payload = res.data;
       // ENVIAMOS PAYLOAD A REDUX
       dispatch({
@@ -57,7 +57,7 @@ export const fetch_product_byname = (name: string) => {
   return (dispatch: Dispatch<ActionProducts>) => {
     let payload: ProductState["productList"] = [];
     axios
-      .get(`http://localhost:3700/products/search/${name}`)
+      .get(`/products/search/${name}`)
       .then((res) => {
         payload = res.data;
 
@@ -79,7 +79,7 @@ export const create_product = (payload: Product) => {
   return (dispatch: Dispatch<ActionProducts>) => {
     axios({
       method: "post",
-      url: "http://localhost:3700/products/new",
+      url: "/products/new",
       data: payload,
     }).then(() =>
       // ENVIAMOS PAYLOAD A REDUX
@@ -108,7 +108,7 @@ export const fetch_product_detail = (id: number) => {
       show_in_shop: true,
       image: "",
     };
-    axios.get(`http://localhost:3700/products/${id}`).then((res) => {
+    axios.get(`/products/${id}`).then((res) => {
       if (res.data?.id) {
         product = {
           id: res.data.id,
@@ -140,7 +140,7 @@ export const fetch_filtered_products = (query: string) => {
   return (dispatch: Dispatch<ActionProducts>) => {
     let payload: ProductState["productList"] = [];
     axios
-      .get(`http://localhost:3700/products/filtered/?${query}`)
+      .get(`/products/filtered/?${query}`)
       .then((response) => {
         if (response.data) {
           payload = response.data;
@@ -186,7 +186,7 @@ export const userRegister = (user: UserRegister, toast: any) => {
   // return (dispatch: Dispatch<ActionUser>)=> {
   toast.promise(
     axios
-      .post(`http://localhost:3700/auth/signup`, user)
+      .post(`/auth/signup`, user)
       .then((response) => {
         // const data = response.data;
         // console.log(data);
@@ -217,7 +217,7 @@ export const userLogin = (user: UserLog, toast: any, navigate: any) => {
   return (dispatch: Dispatch<ActionUser>) => {
     toast.promise(
       axios
-        .post(`http://localhost:3700/auth/signin`, user)
+        .post(`/auth/signin`, user)
         .then((response) => {
           axios.defaults.headers.common[
             "x-access-token"
