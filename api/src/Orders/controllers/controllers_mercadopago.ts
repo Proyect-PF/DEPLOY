@@ -250,12 +250,12 @@ export const POST_GeneratePayment = async (
         payer: {
             phone: {
                 area_code: prod.area_code.toString(),
-                number: prod.number.toString()
+                number: prod.number
             },
             address: {
                 zip_code: prod.zip_code.toString(),
                 street_name: prod.street_name,
-                street_number: prod.street_number.toString()
+                street_number: prod.street_number
             },
             email: userInfo.users.email,
             name: userInfo.users.fullname,
