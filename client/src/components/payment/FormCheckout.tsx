@@ -30,7 +30,7 @@ export const FormCheckout = (): JSX.Element => {
       onSubmit={(values) => {
         axios({
           method: 'post',
-          url: 'https://unbardodesignback.up.railway.app/orders/payment/',
+          url: '/orders/payment',
           data: values,
         }).then((res) => {
           window.location.href = res.data.res.body.init_point;

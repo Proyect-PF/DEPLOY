@@ -215,7 +215,7 @@ export const POST_GeneratePayment = async (
 ) => {
     const prod = request.body; //se recibe por body => id_user, area_code, number, zip_code, street_name, street_number  
     
-    console.log("ENTRO EN FUNCION");
+    console.log("ENTRO EN FUNCION", prod);
 
     //TODO: Se utiliza el id del usuario que se obtiene por body para obtener la información de la ultima orden del usuario
     //const last = await GET_OrderLast(prod.id_user, prod.id_order) //last.id => id de la orden de compra del usuario
