@@ -47,7 +47,7 @@ const Checkout = (): JSX.Element => {
 
   useEffect(() => {
     axios
-      .post('http://localhost:3700/orders', userProducts)
+      .post('/orders', userProducts)
       .then((response) => {
         console.log('DESPUES DEL POST', response);
         return response;
