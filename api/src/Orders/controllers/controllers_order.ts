@@ -19,6 +19,9 @@ export const POST_Order = async (request: Request, response: Response) => {
     try {
         const {id_user, products} = request.body;
 
+        console.log(id_user, products);
+
+
         //----------------------------------------------------
         //TODO: Analiza si existe otra orden de compra con estado status "cart", y si existe la elimina, antes de crear la nueva orden con status "cart". De esta forma siempre va a existir solo un carrito por usuario
         const order = await db.Orders.findOne({
