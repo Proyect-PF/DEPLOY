@@ -213,7 +213,9 @@ export const POST_GeneratePayment = async (
     request: Request<RequestParams, ResponseBody, RequestBody, RequestQuery>,
     response: Response
 ) => {
-    const prod = request.body; //se recibe por body => id_user, area_code, number, zip_code, street_name, street_number    
+    const prod = request.body; //se recibe por body => id_user, area_code, number, zip_code, street_name, street_number  
+    
+    console.log("ENTRO EN FUNCION");
 
     //TODO: Se utiliza el id del usuario que se obtiene por body para obtener la información de la ultima orden del usuario
     //const last = await GET_OrderLast(prod.id_user, prod.id_order) //last.id => id de la orden de compra del usuario
@@ -237,8 +239,8 @@ export const POST_GeneratePayment = async (
     let preference = {
         items: prodInfo,
         back_urls: {
-            "success": "http://localhost:3700/orders/feedback",
-            "failure": "http://localhost:3700/orders/feedback",
+            "success": "https://deploy-unbardo.vercel.app/",
+            "failure": "https://deploy-unbardo.vercel.app/",
             "pending": ""
         },
         //auto_return: "approved",
@@ -247,12 +249,12 @@ export const POST_GeneratePayment = async (
         payer: {
             phone: {
                 area_code: prod.area_code.toString(),
-                number: prod.number
+                number: prod.number.toString()
             },
             address: {
                 zip_code: prod.zip_code.toString(),
                 street_name: prod.street_name,
-                street_number: prod.street_number
+                street_number: prod.street_number.toString()
             },
             email: userInfo.users.email,
             name: userInfo.users.fullname,
