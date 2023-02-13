@@ -13,6 +13,7 @@ const db:any = {};
 let sequelize:any;
 
 sequelize = new Sequelize(config.db_deploy);
+//sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 sequelize.authenticate()
 .then(()=>console.log('- CONEXION A LA BASE DE DATOS EXITOSA -'))
