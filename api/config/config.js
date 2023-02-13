@@ -6,7 +6,7 @@ module.exports = {
   password: process.env.DB_PASSWORD || "123456789",
   database: process.env.DB_NAME || "unbardo_design",
   host: process.env.DB_HOST || "localhost",
-  db_deploy: process.env.DB_DEPLOY || "postgresql://postgres:KrtCd8IyxfLRYO6YYSyv@containers-us-west-185.railway.app:7203/railway",
+  db_deploy: process.env.DB_DEPLOY || "postgresql://postgres:juGAIQLTDZyxiFUUIkQ9@containers-us-west-30.railway.app:5800/railway",
   dialect: "postgres",
   define: {
     timestamps: true,
