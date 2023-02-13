@@ -230,6 +230,7 @@ export const POST_GeneratePayment = async (
     //Obtiene la informacion de cada producto de la orden como un array de objetos, donde cada objeto tiene id (del rpoducto), currency_id: "ARS", description, title, quantity, unit_price
     const prodInfo = await GET_OrderDescription(last.id);    
     
+    console.log("PROD INFO:", prodInfo);
     
 
     //TODO: items => información relacionada al producto
