@@ -4,7 +4,7 @@ import { Product } from "../../state/types";
 import { AdminAction, AdminActionType } from "./types-interfaces";
 import Swal from "sweetalert2";
 
-
+//Product actions
 export const ADMfetch_products = () => {
   return (dispatch: Dispatch<AdminAction>) => {
     axios.get("/products/").then((res) => {

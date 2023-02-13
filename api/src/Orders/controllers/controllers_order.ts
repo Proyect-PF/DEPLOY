@@ -84,7 +84,7 @@ export const GET_DetailsByOrderId = async (req: Request, res: Response) => {
         // Ejecutar la primera consulta
         const order = await db.Orders.findOne({
             where: {id: orderId},
-            attributes: ["id", "updatedAt", "status"],
+            attributes: ["id", "updatedAt", "status", "dispatched"],
             include: [{model: db.Users, as: "users", attributes: ["fullname", "email"]}],
             order: [['updatedAt', 'DESC']]
         });
@@ -96,13 +96,14 @@ export const GET_DetailsByOrderId = async (req: Request, res: Response) => {
         });
 
         // Extraer los valores de order y users
-        const {id, updatedAt, status} = order.dataValues;
+        const {id, updatedAt, status, dispatched} = order.dataValues;
         const {fullname, email} = order.users;
         // Combinar solo los valores necesarios
         const response = {
             id,
             updatedAt,
             status,
+            dispatched,
             fullname,
             email
             ,
@@ -125,7 +126,7 @@ export const UPDATE_OrderStatus = async (req: Request, res: Response) => {
         const {id, status} = req.query;
 
         const orderUpdate = await db.Orders.update({
-            status: status,
+            dispatched: Boolean(status),
         }, {
             where: {
                 id
@@ -175,3 +176,27 @@ export const DELETE_AllOrders = async (request: Request, response: Response) => 
         return response.status(500).json({ error: error.message });
     }
 };
+
+export const GET_OrderByUser = async (request: Request, response: Response) => {
+    try {
+        const {id_user} = request.params;
+        let array = [];
+        const orderUser = await db.Orders.findAll({
+            where: {
+                id_user,
+                status: {[Op.ne]: 'cart'}
+             },
+        });
+        
+        for (const ele of orderUser) {
+            const prodOrder = await db.OrderProducts.findAll({
+                where: {id_order: ele.id}
+            })
+            array.push({ele, product: prodOrder});
+        }
+        
+        return response.status(200).json(array);
+    } catch (error: any) {
+        return response.status(500).json({ error: error.message });
+    }
+}
