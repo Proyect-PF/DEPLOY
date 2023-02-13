@@ -47,7 +47,7 @@ const Checkout = (): JSX.Element => {
 
   useEffect(() => {
     axios
-      .post('/orders', userProducts)
+      .post('https://unbardodesignback.up.railway.app/orders', userProducts)
       .then((response) => {
         console.log('DESPUES DEL POST', response);
         return response;
